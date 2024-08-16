@@ -128,8 +128,9 @@ class DenseRetrieval(Retrieval):
     def __init__(self, dataset_name, dataset):
         super().__init__(dataset_name, dataset)
 
+        self.device = 'cuda' if torch.cuda_is_available() else 'cpu'
         self.tokenizer = DPRQuestionEncoderTokenizer.from_pretrained('facebook/dpr-question_encoder-single-nq-base')
-        self.model = DPRQuestionEncoder.from_pretrained('facebook/dpr-question_encoder-single-nq-base')
+        self.model = DPRQuestionEncoder.from_pretrained('facebook/dpr-question_encoder-single-nq-base').to(self.device)
 
         self.serialize_header = self.serialization('header')
         print("Finish header serialization!")
@@ -141,7 +142,8 @@ class DenseRetrieval(Retrieval):
         print("Finish question serialization!")
     
     def text_encoding(self, text):
-        inputs = self.tokenizer(text, return_tensors='pt', padding='max_length', truncation=True, max_length=512, )
+        inputs = self.tokenizer(text, return_tensors='pt', padding='max_length', truncation=True, max_length=512)
+        inputs = {key: value.to(self.device) for key, value in inputs.items()}
         with torch.no_grad():
             embeddings = self.model(**inputs).pooler_output
         return embeddings.squeeze().numpy()
@@ -185,6 +187,7 @@ class DenseRetrieval(Retrieval):
         print(f"Finish {retrieval_range} encoding!")
 
         index = faiss.IndexFlatL2(data.shape[1])
+        # index = faiss.index_cpu_to_all_gpus(index)
         index.add(data)
 
         num_docs = data.shape[0]
