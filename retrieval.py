@@ -146,7 +146,7 @@ class DenseRetrieval(Retrieval):
         inputs = {key: value.to(self.device) for key, value in inputs.items()}
         with torch.no_grad():
             embeddings = self.model(**inputs).pooler_output
-        return embeddings.squeeze().numpy()
+        return embeddings.squeeze().cpu().numpy()
 
     def list_encoding(self, text_list):
         embeddings_list = []
