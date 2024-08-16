@@ -1,0 +1,15 @@
+[train]         serialization: title      | recall score: 53.58
+[train]         serialization: header     | recall score: 20.48
+[train]         serialization: metadata   | recall score: 62.82
+[train]         serialization: table      | recall score: 27.22
+[train]         serialization: full       | recall score: 41.28
+[validation]    serialization: title      | recall score: 67.21
+[validation]    serialization: header     | recall score: 35.17
+[validation]    serialization: metadata   | recall score: 75.76
+[validation]    serialization: table      | recall score: 45.82
+[validation]    serialization: full       | recall score: 60.27
+[test]          serialization: title      | recall score: 63.54
+[test]          serialization: header     | recall score: 36.46
+[test]          serialization: metadata   | recall score: 75.79
+[test]          serialization: table      | recall score: 44.71
+[test]          serialization: full       | recall score: 59.28

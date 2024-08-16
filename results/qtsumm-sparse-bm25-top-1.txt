@@ -1,0 +1,15 @@
+[train]         serialization: title      | exact match score: 20.90
+[train]         serialization: header     | exact match score: 7.35
+[train]         serialization: metadata   | exact match score: 23.81
+[train]         serialization: table      | exact match score: 6.24
+[train]         serialization: full       | exact match score: 22.04
+[validation]    serialization: title      | exact match score: 24.33
+[validation]    serialization: header     | exact match score: 11.41
+[validation]    serialization: metadata   | exact match score: 29.85
+[validation]    serialization: table      | exact match score: 10.27
+[validation]    serialization: full       | exact match score: 28.23
+[test]          serialization: title      | exact match score: 20.96
+[test]          serialization: header     | exact match score: 11.60
+[test]          serialization: metadata   | exact match score: 27.09
+[test]          serialization: table      | exact match score: 10.11
+[test]          serialization: full       | exact match score: 27.46
