@@ -128,7 +128,7 @@ class DenseRetrieval(Retrieval):
     def __init__(self, dataset_name, dataset):
         super().__init__(dataset_name, dataset)
 
-        self.device = 'cuda' if torch.cuda_is_available() else 'cpu'
+        self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         self.tokenizer = DPRQuestionEncoderTokenizer.from_pretrained('facebook/dpr-question_encoder-single-nq-base')
         self.model = DPRQuestionEncoder.from_pretrained('facebook/dpr-question_encoder-single-nq-base').to(self.device)
 
