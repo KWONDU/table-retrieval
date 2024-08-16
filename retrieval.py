@@ -194,7 +194,7 @@ class DenseRetrieval(Retrieval):
         sorted_indices = []
         for query in tqdm(queries, desc="Faiss library - retrieval"):
             _, sorted_index_list = index.search(np.array([query]), k=num_docs)
-            sorted_indices.append(sorted_index_list)
+            sorted_indices.append(sorted_index_list[0])
 
         print(f"Finish score calculation with {retrieval_range} serialization!")
         return sorted_indices
