@@ -13,6 +13,7 @@ done
 
 # Step 2: Install required Python packages
 pip install datasets faiss-gpu faiss-cpu matplotlib nltk numpy torch tqdm transformers
+python -c "import nltk; nltk.download('stopwords')"
 
 # Step 3: Create directories for results, retrieval indices, and graphs
 mkdir -p results retrieval_indices graphs
