@@ -40,7 +40,7 @@ if __name__ == '__main__':
 
         for k in ks:
             pattern = pattern_em if k == 1 else pattern_recall
-            with open(f'results/{dataset.lower()}-sparse-{methods[args.rtr]}-top-{k}.txt', 'r') as f:
+            with open(f'results/{dataset.lower()}-{args.rtr}-{methods[args.rtr]}-top-{k}.txt', 'r') as f:
                 lines = f.readlines()
 
             for line in lines:
