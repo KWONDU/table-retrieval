@@ -20,4 +20,8 @@ class QTSummDataset():
 
 class SpiderDataset():
     def __init__(self):
-        None
+        self.dataset = load_dataset("xlangai/spider")
+        self.data_lake = None # spider_table_lake.json
+        self.train = self.dataset['train']
+        self.validation = self.dataset['validation']
+        self.test = None

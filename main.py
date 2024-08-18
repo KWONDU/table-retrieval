@@ -13,6 +13,8 @@ def main(dataset_name, dataset_splits, retrieval_method, table_elements, ks, **k
     # Retrieve tables
     for split in dataset_splits:
         dataset = load_dataset_split(source_dataset, split)
+        if dataset == None:
+            continue
         retrieval = load_retrieval(dataset_name, dataset, retrieval_method)
         print(f"### {retrieval_method.upper()} Retrieval - {dataset_name} {split} set ###")
 

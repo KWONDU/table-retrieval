@@ -26,6 +26,15 @@ class Retrieval():
             self.title_lake = [_['title'] for _ in self.dataset['table']]
             self.questions = self.dataset['query']
             self.answers = self.dataset['summary']
+        elif self.dataset_name == 'Spider':
+            self.header_lake = None
+            self.value_lake = None
+            self.title_lake = None
+            self.questions = self.dataset['question']
+            self.answers = None
+        else:
+            print(f"Invalid dataset: {dataset_name}")
+            sys.exit()
     
     def retrieval(self, target):
         if target == None:
@@ -212,6 +221,25 @@ class DPRRetrieval(Retrieval):
         for query in tqdm(queries, desc="Faiss library - retrieval"):
             _, sorted_index_list = index.search(np.array([query]), k=num_docs)
             sorted_indices.append(sorted_index_list[0])
+
+        print(f"Finish score calculation with {target} retrieval!")
+        return sorted_indices
+
+
+class TempRetrieval(Retrieval):
+    def __init__(self, dataset_name, dataset):
+        super().__init__(dataset_name, dataset)
+    
+    # Main
+    def retrieval(self, target):
+        if target == None:
+            data = None
+        else:
+            print(f"Invalid tabular data element: {target}")
+            sys.exit()
+        queries = None
+        
+        sorted_indices = None
 
         print(f"Finish score calculation with {target} retrieval!")
         return sorted_indices
