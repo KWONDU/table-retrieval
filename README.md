@@ -1,12 +1,14 @@
 # Table Retrieval
 
 ## 1. Setup
-
     ./setup.sh
 
 ## 2. Run
-
-    ./run.sh {sparse, dense}
+    python main.py -d {dataset name} -rtr {retrieval method} -k {top-k}
+### 2.1 dataset name
+FeTaQA, QTSumm, Spider
+### 2.2 retrieval method
+bm25, dpr
 
 ## 3. Directory
 ### 3.1 graphs

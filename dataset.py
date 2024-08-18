@@ -16,3 +16,8 @@ class QTSummDataset():
         self.train = self.dataset['train']
         self.validation = self.dataset['validation']
         self.test = self.dataset['test']
+
+
+class SpiderDataset():
+    def __init__(self):
+        None
