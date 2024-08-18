@@ -14,7 +14,7 @@ def main(dataset_name, dataset_splits, retrieval_method, table_elements, ks, **k
     for split in dataset_splits:
         dataset = load_dataset_split(source_dataset, split)
         retrieval = load_retrieval(dataset_name, dataset, retrieval_method)
-        print(f"### {retrieval_method.title()} Retrieval - {dataset_name} {split} set ###")
+        print(f"### {retrieval_method.upper()} Retrieval - {dataset_name} {split} set ###")
 
         for target in table_elements:
             if not os.path.exists(f'retrieval_indices/{dataset_name.lower()}-{split}-{retrieval_method}-{target}.csv'):
@@ -39,12 +39,12 @@ def main(dataset_name, dataset_splits, retrieval_method, table_elements, ks, **k
                     recall_top_k_score = np.mean(recall_top_k) * 100
                     recall_flag = "exact match" if k == 1 else "recall"
                     
-                    result = "{0:<15} serialization: {1:<10} | {2} score: {3:.2f}".format(f"[{split}]", retrieval_range, recall_flag ,recall_top_k_score)
+                    result = "{0:<15} serialization: {1:<10} | {2} score: {3:.2f}".format(f"[{split}]", target, recall_flag ,recall_top_k_score)
                     result_list.append(result + '\n')
                     print(result)
 
     # Save to file
-    with open(f'results/{dataset_name.lower()}-{methods[retrieval_method]}-top-{k}.txt', 'w') as f:
+    with open(f'results/{dataset_name.lower()}-{retrieval_method}-top-{k}.txt', 'w') as f:
         f.writelines(result_list)
 
     return
