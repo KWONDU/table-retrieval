@@ -31,5 +31,5 @@ any natural numbers
 png
 ### 3.2 results
 txt
-### 3.3 retrieval_indices
+### 3.3 retrieval_indices (only local)
 csv
