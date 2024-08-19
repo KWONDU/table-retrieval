@@ -13,7 +13,7 @@
              K={top-k tables, optional}
 
 ### 2.1 dataset name
-FeTaQA, QTSumm, Spider
+FeTaQA, QTSumm
 ### 2.2 dataset splits
 train, validation, test
 > default: "train,validation,split"

@@ -26,12 +26,6 @@ class Retrieval():
             self.title_lake = [_['title'] for _ in self.dataset['table']]
             self.questions = self.dataset['query']
             self.answers = self.dataset['summary']
-        elif self.dataset_name == 'Spider':
-            self.header_lake = None
-            self.value_lake = None
-            self.title_lake = None
-            self.questions = self.dataset['question']
-            self.answers = None
         else:
             print(f"Invalid dataset: {dataset_name}")
             sys.exit()
