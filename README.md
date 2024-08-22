@@ -1,7 +1,5 @@
 # Table Retrieval
 
-![naive_framework](markdown/navie_framework.png)
-
 ## 1. Setup
 
     ./setup.sh
