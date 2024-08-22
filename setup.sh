@@ -1,6 +1,6 @@
 #!/bin/bash
 
-required_files=("dataset.py" "main.py" "retrieval.py" "util.py" "visualization.py")
+required_files=("dataset.py" "main.py" "retrieval.py" "util.py" "visualization.py" "source_data/openwikitable.tar.gz")
 for file in "${required_files[@]}"
 do
     if [[ ! -f $file ]]; then
@@ -13,5 +13,6 @@ pip install datasets faiss-gpu faiss-cpu matplotlib nltk numpy torch tqdm transf
 python -c "import nltk; nltk.download('stopwords')"
 
 mkdir -p results retrieval_indices graphs
+tar -xzvf source_data/openwikitable.tar.gz -C source_data/
 
 echo "Setup complete!"
