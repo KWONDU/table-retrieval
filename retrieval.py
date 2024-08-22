@@ -1,7 +1,6 @@
 import faiss
 import numpy as np
 import re
-import sys
 import time
 import torch
 from nltk.corpus import stopwords
@@ -26,16 +25,24 @@ class Retrieval():
             self.title_lake = [_['title'] for _ in self.dataset['table']]
             self.questions = self.dataset['query']
             self.answers = self.dataset['summary']
+        elif self.dataset_name == 'OpenWikiTable':
+            self.header_lake = self.dataset['header']
+            self.value_lake = self.dataset['value']
+            self.title_lake = self.dataset['title']
+            self.questions = self.dataset['question']
+            self.answers = self.dataset['answer']
+            self.sqls = self.dataset['sql']
+            exit(1)
         else:
             print(f"Invalid dataset: {dataset_name}")
-            sys.exit()
+            exit(1)
     
     def retrieval(self, target):
         if target == None:
             data = None
         else:
             print(f"Invalid tabular data element: {target}")
-            sys.exit()
+            exit(1)
         queries = None
         
         sorted_indices = None
@@ -81,7 +88,7 @@ class BM25Retrieval(Retrieval):
             result = np.array([self.preprocessing_text(question) for question in self.questions], dtype=object)
         else:
             print(f"Invalid data type: {type}")
-            sys.exit()
+            exit(1)
         return result
     
     # BM25 retrieval
@@ -133,7 +140,7 @@ class BM25Retrieval(Retrieval):
             data = [np.concatenate([title, header, value]) for title, header, value in zip(self.tokenize_title, self.tokenize_header, self.tokenize_value)]
         else:
             print(f"Invalid tabular data element: {target}")
-            sys.exit()
+            exit(1)
         queries = self.tokenize_question
 
         bm25_scores = self.bm25_get_scores(data, queries)
@@ -172,7 +179,7 @@ class DPRRetrieval(Retrieval):
             result = np.array(self.questions, dtype=object)
         else:
             print(f"Invalid data type: {type}")
-            sys.exit()
+            exit(1)
         return result
     
     # DPR encoding
@@ -204,7 +211,7 @@ class DPRRetrieval(Retrieval):
             data = self.dpr_encoding_list(self.serialize_title + " " + self.serialize_header + " " + self.serialize_value)
         else:
             print(f"Invalid tabular data element: {target}")
-            sys.exit()
+            exit(1)
         queries = self.dpr_encoding_list(self.serialize_question)
 
         index = faiss.IndexFlatL2(data.shape[1])
@@ -230,7 +237,7 @@ class TempRetrieval(Retrieval):
             data = None
         else:
             print(f"Invalid tabular data element: {target}")
-            sys.exit()
+            exit(1)
         queries = None
         
         sorted_indices = None

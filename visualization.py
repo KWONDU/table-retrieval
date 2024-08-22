@@ -1,5 +1,4 @@
 import re
-import sys
 from util import parser, plot_scores
 
 
@@ -32,11 +31,11 @@ if __name__ == '__main__':
         k = int(k)
         
         try:
-            with open(f'results/{dataset.lower()}-{retrieval}-top-{k}.txt', 'r') as f:
-                lines = f.readlines()
+            with open(f'results/{dataset.lower()}-{retrieval}-top-{k}.txt', 'r') as file:
+                lines = file.readlines()
         except FileNotFoundError as e:
             print(f"Invalid file: {dataset.lower()}-{retrieval}-top-{k}.txt")
-            sys.exit()
+            exit(1)
         
         # Extract components
         pattern = pattern_em if k == 1 else pattern_recall

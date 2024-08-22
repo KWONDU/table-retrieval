@@ -9,8 +9,7 @@ def load_dataset(dataset_name):
         source_dataset = getattr(module, f'{dataset_name}Dataset')()
     except (ModuleNotFoundError, AttributeError) as e:
         print(f"Invalid dataset: {dataset_name}")
-        sys.exit()
-    print(source_dataset.dataset)
+        exit(1)
 
     return source_dataset
 
@@ -20,7 +19,7 @@ def load_dataset_split(source_dataset, split):
         dataset = getattr(source_dataset, split)
     except AttributeError as e:
         print(f"Invalid dataset split: {split}")
-        sys.exit()
+        exit(1)
     
     return dataset
 
@@ -31,7 +30,7 @@ def load_retrieval(dataset_name, dataset, retrieval_method):
         retrieval = getattr(module, f'{retrieval_method.upper()}Retrieval')(dataset_name=dataset_name, dataset=dataset)
     except (ModuleNotFoundError, AttributeError) as e:
         print(f"Invalid retrieval method: {retrieval_method}")
-        sys.exit()
+        exit(1)
     
     return retrieval
 

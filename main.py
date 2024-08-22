@@ -1,14 +1,13 @@
 import csv
 import numpy as np
 import os
-import sys
 from util import load_dataset, load_dataset_split, load_retrieval, parser
 
 
 def main(dataset_name, dataset_splits, retrieval_method, table_elements, ks, **kwargs):
     # Load dataset
     source_dataset = load_dataset(dataset_name)
-    print(source_dataset.dataset)
+    # print(source_dataset.dataset)
 
     # Retrieve tables
     for split in dataset_splits:
@@ -20,9 +19,9 @@ def main(dataset_name, dataset_splits, retrieval_method, table_elements, ks, **k
 
         for target in table_elements:
             if not os.path.exists(f'retrieval_indices/{dataset_name.lower()}-{split}-{retrieval_method}-{target}.csv'):
-                with open(f'retrieval_indices/{dataset_name.lower()}-{split}-{retrieval_method}-{target}.csv', 'w', newline='') as f:
+                with open(f'retrieval_indices/{dataset_name.lower()}-{split}-{retrieval_method}-{target}.csv', 'w', newline='') as file:
                     sorted_indices = retrieval.retrieval(target=target)
-                    writer = csv.writer(f)
+                    writer = csv.writer(file)
                     writer.writerows(sorted_indices)
     
     # Index top-k tables
@@ -33,8 +32,8 @@ def main(dataset_name, dataset_splits, retrieval_method, table_elements, ks, **k
         result_list = []
         for split in dataset_splits:
             for target in table_elements:
-                with open(f'retrieval_indices/{dataset_name.lower()}-{split}-{retrieval_method}-{target}.csv', 'r') as f:
-                    reader = csv.reader(f)
+                with open(f'retrieval_indices/{dataset_name.lower()}-{split}-{retrieval_method}-{target}.csv', 'r') as file:
+                    reader = csv.reader(file)
                     top_k_indices = np.array(list(reader), dtype=int)[:, :k]
                     query_indices = np.arange(len(top_k_indices)).reshape(-1, 1)
                     recall_top_k = np.any(np.equal(top_k_indices, query_indices), axis=1)
@@ -46,8 +45,8 @@ def main(dataset_name, dataset_splits, retrieval_method, table_elements, ks, **k
                     print(result)
 
     # Save to file
-    with open(f'results/{dataset_name.lower()}-{retrieval_method}-top-{k}.txt', 'w') as f:
-        f.writelines(result_list)
+    with open(f'results/{dataset_name.lower()}-{retrieval_method}-top-{k}.txt', 'w') as file:
+        file.writelines(result_list)
 
     return
 
