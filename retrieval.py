@@ -4,6 +4,7 @@ import re
 import time
 import torch
 from nltk.corpus import stopwords
+from nltk.data import path
 from tqdm import tqdm
 from transformers import DPRQuestionEncoder, DPRQuestionEncoderTokenizer
 
@@ -32,7 +33,6 @@ class Retrieval():
             self.questions = self.dataset['question']
             self.answers = self.dataset['answer']
             self.sqls = self.dataset['sql']
-            exit(1)
         else:
             print(f"Invalid dataset: {dataset_name}")
             exit(1)
@@ -71,6 +71,7 @@ class BM25Retrieval(Retrieval):
         text = re.sub(r'[^a-z0-9]', ' ', text)
         text = text.split()
 
+        path.append('nltk_data')
         stop_words = stopwords.words('english')
         return np.array([word for word in text if word not in stop_words])
 

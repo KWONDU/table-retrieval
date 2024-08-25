@@ -1,0 +1,10 @@
+[validation]    serialization: title      | exact match score: 84.72
+[validation]    serialization: header     | exact match score: 17.22
+[validation]    serialization: metadata   | exact match score: 89.96
+[validation]    serialization: table      | exact match score: 24.27
+[validation]    serialization: full       | exact match score: 46.36
+[test]          serialization: title      | exact match score: 84.85
+[test]          serialization: header     | exact match score: 16.40
+[test]          serialization: metadata   | exact match score: 90.32
+[test]          serialization: table      | exact match score: 24.54
+[test]          serialization: full       | exact match score: 46.24

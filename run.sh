@@ -28,4 +28,4 @@ if [[ -z $RETRIEVAL ]]; then
     exit 1
 fi
 
-python main.py -d "$DATASET" -sp "$SPLITS" -rtr "$RETRIEVAL" -elem "$ELEMENTS" -k "$K"
+python main.py -d "$DATASET" -sp "$SPLITS" -rtr "$RETRIEVAL" -elem "$ELEMENTS" -k "$K" || python3 main.py -d "$DATASET" -sp "$SPLITS" -rtr "$RETRIEVAL" -elem "$ELEMENTS" -k "$K"

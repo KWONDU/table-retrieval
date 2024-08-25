@@ -1,0 +1,10 @@
+[validation]    serialization: title      | recall score: 96.70
+[validation]    serialization: header     | recall score: 37.97
+[validation]    serialization: metadata   | recall score: 98.71
+[validation]    serialization: table      | recall score: 31.82
+[validation]    serialization: full       | recall score: 98.11
+[test]          serialization: title      | recall score: 95.97
+[test]          serialization: header     | recall score: 36.59
+[test]          serialization: metadata   | recall score: 98.15
+[test]          serialization: table      | recall score: 30.90
+[test]          serialization: full       | recall score: 97.77

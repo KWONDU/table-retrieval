@@ -41,8 +41,9 @@ class OpenWikiTableDataset():
                 data_dict['answer'] = list(data_json['answer'].values())
                 data_dict['sql'] = list(data_json['sql'].values())
                 
-                data_dict['header'], data_dict['value'], data_dict['title'] = [], [], []
+                data_dict['tid'], data_dict['header'], data_dict['value'], data_dict['title'] = [], [], [], []
                 for _, tid in data_json['original_table_id'].items():
+                    data_dict['tid'].append(tid)
                     data_dict['header'].append(self.table_dict[tid]['header'])
                     data_dict['value'].append(self.table_dict[tid]['rows'])
                     data_dict['title'].append(' - '.join([self.table_dict[tid][_] for _ in ['page_title', 'section_title', 'caption']]))

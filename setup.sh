@@ -10,7 +10,7 @@ do
 done
 
 pip install datasets faiss-gpu faiss-cpu matplotlib nltk numpy torch tqdm transformers
-python -c "import nltk; nltk.download('stopwords')"
+python -c "import nltk; nltk.download('stopwords'), download_dir='nltk_data'"
 
 mkdir -p results retrieval_indices graphs
 tar -xzvf source_data/openwikitable.tar.gz -C source_data/
